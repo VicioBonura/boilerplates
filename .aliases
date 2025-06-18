@@ -1,0 +1,31 @@
+#!/bin/bash
+# Alias locali per questo progetto React
+# Usage: source .aliases
+
+# Script di automazione per React
+alias rgc='./scripts/gc.sh'
+alias rgp='./scripts/gp.sh'
+alias rgh='./scripts/gh.sh'
+alias rgctx='./scripts/gctx.sh'
+alias rsetup='./scripts/setup.sh'
+
+# Comandi npm frequenti
+alias rdev='npm run dev'
+alias rbuild='npm run build'
+alias rpreview='npm run preview'
+alias rlint='npm run lint'
+
+# Comandi git rapidi
+alias gs='git status'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gp='git push'
+
+# Navigazione veloce
+alias src='cd src'
+alias comp='cd src/components'
+alias pages='cd src/pages'
+alias hooks='cd src/hooks'
+
+echo "..Alias locali caricati per il progetto React"
+echo "..Alias disponibili: rgc, rgp, rgh, rgctx, rsetup, rdev, rbuild, rpreview" 
