@@ -153,7 +153,7 @@ src/types/
 cd my-app
 
 # Attiva ambiente con alias
-./activate.sh
+source ./activate.sh
 
 # Avvia sviluppo
 rdev
@@ -189,8 +189,8 @@ rgc ProtectedRoute
 ### Alias Locali al Progetto
 
 ```bash
-# Attiva ambiente con alias
-./activate.sh
+# Attiva ambiente con alias  
+source ./activate.sh
 
 rgc Header        # invece di ./scripts/gc.sh Header
 rdev              # invece di npm run dev
@@ -199,9 +199,15 @@ rgctx Auth        # invece di ./scripts/gctx.sh Auth
 ```
 
 **Come funziona:**
-- `./activate.sh` carica gli alias e apre una shell dedicata
+- `source ./activate.sh` carica gli alias nella shell corrente
+- Auto-rileva zsh o bash per la compatibilità
 - Gli alias sono prefissati con "r" (React) per evitare conflitti
-- Digita `exit` per tornare alla shell normale
+
+**Compatibilità:**
+-  Linux/macOS con zsh
+-  Windows Git Bash
+-  Ubuntu/Debian bash
+-  Prompt personalizzato identico su tutte le piattaforme
 
 **Alias disponibili:**
 - `rgc` - Generate Component
@@ -248,16 +254,16 @@ EOF
 
 ### Permessi Negati
 ```bash
-chmod +x scripts/*.sh .aliases activate.sh
+chmod +x scripts/*.sh activate.sh
 ```
 
 ### Alias Non Funzionano
 ```bash
-# Verifica che l'ambiente sia attivo
-./activate.sh
+# Attiva l'ambiente
+source ./activate.sh
 
-# Oppure carica manualmente
-source .aliases
+# Verifica che gli alias funzionino
+react-help
 ```
 
 ### Script Non Trovato
@@ -272,7 +278,8 @@ ls scripts/*.sh
 
 ### Errori di Sintassi
 - Verifica bash version: `bash --version` (richiesto 4+)
-- Su Git Bash (Windows): assicurati di essere in modalità bash
+- Su Git Bash (Windows): automaticamente rilevato e configurato
+- Su sistemi misti: `source ./activate.sh` sceglie automaticamente bash o zsh
 
 ## Template Rapidi
 
@@ -280,7 +287,7 @@ ls scripts/*.sh
 ```bash
 # Setup + generazione base
 ./scripts/setup.sh my-project && cd my-project
-./activate.sh
+source ./activate.sh
 
 # Generazione componenti con alias
 rgp Detail
