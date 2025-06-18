@@ -151,64 +151,75 @@ src/types/
 # Setup progetto completo
 ./scripts/setup.sh my-app
 cd my-app
-npm run dev
+
+# Attiva ambiente con alias
+./activate.sh
+
+# Avvia sviluppo
+rdev
 ```
 
 ### Fase 2: Implementazione Core (30 minuti)
 ```bash
 # Genera pagine necessarie
-./scripts/gp.sh Home
-./scripts/gp.sh Login
+rgp Home
+rgp Login
 
 # Genera componenti
-./scripts/gc.sh ItemCard
-./scripts/gc.sh SearchForm
+rgc ItemCard
+rgc SearchForm
 
 # Genera hooks per API
-./scripts/gh.sh useItemsApi
-./scripts/gh.sh useSearchApi
+rgh useItemsApi
+rgh useSearchApi
 ```
 
 ### Fase 3: Autenticazione
 ```bash
 # Genera context per auth
-./scripts/gctx.sh Auth
+rgctx Auth
 
 # Genera componenti auth
-./scripts/gc.sh LoginForm
-./scripts/gc.sh ProtectedRoute
+rgc LoginForm
+rgc ProtectedRoute
 ```
 
 ## Utilizzo Avanzato
 
-### Alias per Velocità
-Aggiungere a `.bashrc` o `.zshrc`:
+### Alias Locali al Progetto
 
 ```bash
-alias gc='./scripts/gc.sh'
-alias gp='./scripts/gp.sh'
-alias gh='./scripts/gh.sh'
-alias gctx='./scripts/gctx.sh'
+# Attiva ambiente con alias
+./activate.sh
+
+rgc Header        # invece di ./scripts/gc.sh Header
+rdev              # invece di npm run dev
+rgp Dashboard     # invece di ./scripts/gp.sh Dashboard
+rgctx Auth        # invece di ./scripts/gctx.sh Auth
 ```
 
-Utilizzo:
+**Come funziona:**
+- `./activate.sh` carica gli alias e apre una shell dedicata
+- Gli alias sono prefissati con "r" (React) per evitare conflitti
+- Digita `exit` per tornare alla shell normale
+
+**Alias disponibili:**
+- `rgc` - Generate Component
+- `rgp` - Generate Page  
+- `rgh` - Generate Hook
+- `rgctx` - Generate Context
+- `rsetup` - Setup Project
+- `rdev` - npm run dev
+- `rbuild` - npm run build
+
+### Utilizzo Manuale
+
 ```bash
-gc Header
-gp Dashboard
-gh useApi
-gctx Auth
-```
-
-### Script Path Globale
-Per usare gli script da qualsiasi cartella:
-
-```bash
-# Aggiungi al PATH
-export PATH="$PATH:/path/to/boilerplates/scripts"
-
-# Ora puoi usare da qualsiasi cartella
-gc.sh MyComponent
-gp.sh MyPage
+# Comandi completi
+./scripts/gc.sh MyComponent
+./scripts/gp.sh MyPage
+./scripts/gh.sh useMyHook
+./scripts/gctx.sh MyContext
 ```
 
 ## Personalizzazione Script
@@ -237,22 +248,31 @@ EOF
 
 ### Permessi Negati
 ```bash
-chmod +x scripts/*.sh
+chmod +x scripts/*.sh .aliases activate.sh
+```
+
+### Alias Non Funzionano
+```bash
+# Verifica che l'ambiente sia attivo
+./activate.sh
+
+# Oppure carica manualmente
+source .aliases
 ```
 
 ### Script Non Trovato
 ```bash
-# Verifica che sei nella cartella boilerplates
+# Verifica posizione corretta
 pwd
-# Dovrebbe essere: /path/to/boilerplates
+ls -la scripts/
 
 # Lista script disponibili
-ls -la scripts/
+ls scripts/*.sh
 ```
 
 ### Errori di Sintassi
-- Verifica bash version: `bash --version`
-- I script richiedono bash 4+
+- Verifica bash version: `bash --version` (richiesto 4+)
+- Su Git Bash (Windows): assicurati di essere in modalità bash
 
 ## Template Rapidi
 
@@ -260,9 +280,12 @@ ls -la scripts/
 ```bash
 # Setup + generazione base
 ./scripts/setup.sh my-project && cd my-project
-./scripts/gp.sh Detail
-./scripts/gc.sh ItemCard
-./scripts/gh.sh useItemsApi
+./activate.sh
+
+# Generazione componenti con alias
+rgp Detail
+rgc ItemCard
+rgh useItemsApi
 ```
 
 ### Quick API Integration
@@ -274,9 +297,10 @@ echo "export const API_BASE = 'https://api.example.com';" > src/services/api.ts
 
 ### Quick Authentication Setup
 ```bash
-./scripts/gctx.sh Auth
-./scripts/gc.sh LoginForm
-./scripts/gc.sh ProtectedRoute
+# Con ambiente attivo
+rgctx Auth
+rgc LoginForm
+rgc ProtectedRoute
 ```
 
 ## Prossimo: [Workflow di Sviluppo](./react-development-workflow.md) 
