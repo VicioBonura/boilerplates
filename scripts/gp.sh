@@ -7,8 +7,8 @@ PAGE_PATH="src/pages/$1"
 PAGE_NAME="$1"
 
 if [ -z "$1" ]; then
-  echo "Usage: ./gp.sh PageName"
-  echo "Example: ./gp.sh Home"
+  echo "  -> Uso: ./gp.sh NomePagina"
+  echo "  -> Esempio: ./gp.sh Home"
   exit 1
 fi
 
@@ -36,10 +36,11 @@ const $PAGE_NAME = () => {
   return (
     <div className="${PAGE_NAME,,}-page">
       <h1>$PAGE_NAME Page</h1>
-      <p>Welcome to the $PAGE_NAME page!</p>
     </div>
   );
 };
 
 export default $PAGE_NAME;
 EOF
+
+echo "  Pagina $PAGE_NAME creato con successo!"

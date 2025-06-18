@@ -28,3 +28,5 @@ const $COMPONENT_NAME = () => {
 
 export default $COMPONENT_NAME;
 EOF
+
+echo "  Componente $COMPONENT_NAME creato con successo!"

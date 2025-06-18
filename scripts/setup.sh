@@ -6,36 +6,36 @@
 PROJECT_NAME="$1"
 
 if [ -z "$1" ]; then
-  echo "Usage: ./setup.sh project-name"
-  echo "Example: ./setup.sh my-app"
+  echo "  -> Uso: ./setup.sh nome-progetto"
+  echo "  -> Esempio: ./setup.sh my-app"
   exit 1
 fi
 
-echo "Setting up React project: $PROJECT_NAME"
+echo "  Configurazione progetto React: $PROJECT_NAME"
 
 # 1. Crea progetto Vite
-echo "Creating Vite project..."
+echo "  Creazione progetto Vite..."
 npm create vite@latest "$PROJECT_NAME" -- --template react-ts
 
 cd "$PROJECT_NAME"
 
 # 2. Installa dipendenze
-echo "Installing dependencies..."
+echo "  Installazione dipendenze..."
 npm install
 npm install react-router react-icons
-echo "Installing optional dependencies..."
+echo "  Installazione dipendenze opzionali..."
 npm install jwt-decode
 
 # 3. Pulizia boilerplate
-echo "Cleaning boilerplate..."
+echo "  Pulizia boilerplate..."
 rm -f src/assets/react.svg public/vite.svg
 
 # 4. Crea struttura cartelle
-echo "Creating folder structure..."
+echo "  Creazione struttura cartelle..."
 mkdir -p src/{components,pages,hooks,services,contexts,types,routes,layouts}
 
 # 5. Crea file CSS base
-echo "Setting up base CSS..."
+echo "  Configurazione CSS base..."
 cat > "src/index.css" << 'EOF'
 /* Global */
 
@@ -135,7 +135,7 @@ img {
 EOF
 
 # 6. Crea App.tsx base
-echo "Setting up App.tsx..."
+echo "  Configurazione App.tsx..."
 cat > "src/App.tsx" << 'EOF'
 import { RouterProvider } from "react-router";
 import router from "./routes/routes";
@@ -152,7 +152,7 @@ EOF
 echo "" > "src/App.css"
 
 # 8. Crea routes base
-echo "Setting up basic routing..."
+echo "  Configurazione routing base..."
 cat > "src/routes/routes.tsx" << 'EOF'
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout/MainLayout";
@@ -179,19 +179,46 @@ const router = createBrowserRouter([
 export default router;
 EOF
 
-# 9. Crea MainLayout
-echo "Creating MainLayout..."
+# 9. Crea componente Header
+echo "  Creazione componente Header..."
+mkdir -p "src/components/Header"
+cat > "src/components/Header/Header.tsx" << 'EOF'
+import './Header.css';
+
+const Header = () => {
+  return (
+    <header>
+      <h1>La Mia App</h1>
+    </header>
+  );
+};
+
+export default Header;
+EOF
+
+cat > "src/components/Header/Header.css" << 'EOF'
+header {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-negative);
+  background: var(--bg-primary);
+}
+EOF
+
+# 10. Crea MainLayout
+echo "  Creazione MainLayout..."
 mkdir -p "src/layouts/MainLayout"
 cat > "src/layouts/MainLayout/MainLayout.tsx" << 'EOF'
 import { Outlet } from 'react-router';
+import Header from '../../components/Header/Header';
 import './MainLayout.css';
 
 const MainLayout = () => {
   return (
     <div id="app-container">
-      <header>
-        <h1>My Exam App</h1>
-      </header>
+      <Header />
       <main>
         <Outlet />
       </main>
@@ -209,20 +236,14 @@ cat > "src/layouts/MainLayout/MainLayout.css" << 'EOF'
   min-height: 100vh;
 }
 
-header {
-  padding: 1rem;
-  background: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
-}
-
 main {
   flex: 1;
   padding: 1rem;
 }
 EOF
 
-# 10. Crea Home page
-echo "Creating Home page..."
+# 11. Crea Home page
+echo "  Creazione pagina Home..."
 mkdir -p "src/pages/Home"
 cat > "src/pages/Home/Home.tsx" << 'EOF'
 import './Home.css';
@@ -230,10 +251,10 @@ import './Home.css';
 const Home = () => {
   return (
     <div className="home-page">
-      <h1>Welcome to Your App</h1>
-      <p>Ready to start coding!</p>
+      <h1>Benvenuto nella tua App</h1>
+      <p>Pronto per iniziare a codificare!</p>
       <div className="quick-actions">
-        <button className="btn btn-primary">Get Started</button>
+        <button className="btn btn-primary">Inizia</button>
       </div>
     </div>
   );
@@ -258,8 +279,8 @@ cat > "src/pages/Home/Home.css" << 'EOF'
 }
 EOF
 
-# 11. Crea 404 page
-echo "Creating 404 page..."
+# 12. Crea 404 page
+echo "  Creazione pagina 404..."
 mkdir -p "src/pages/NotFound"
 cat > "src/pages/NotFound/NotFound.tsx" << 'EOF'
 import { Link } from 'react-router';
@@ -268,9 +289,9 @@ import './NotFound.css';
 const NotFound = () => {
   return (
     <div className="not-found">
-      <h1>404 - Page Not Found</h1>
-      <p>The page you're looking for doesn't exist.</p>
-      <Link to="/" className="btn btn-primary">Go back to Home</Link>
+      <h1>404 - Pagina Non Trovata</h1>
+      <p>La pagina che stai cercando non esiste.</p>
+      <Link to="/" className="btn btn-primary">Torna alla Home</Link>
     </div>
   );
 };
@@ -295,22 +316,22 @@ cat > "src/pages/NotFound/NotFound.css" << 'EOF'
 }
 EOF
 
-# 12. Test build
-echo "Testing build..."
+# 13. Test build
+echo "  Test della build..."
 npm run build
 
 echo ""
-echo "✅ Project setup complete!"
-echo "📁 Project: $PROJECT_NAME"
-echo "🌐 Start dev server: cd $PROJECT_NAME && npm run dev"
+echo "  Configurazione progetto completata!"
+echo "  Progetto: $PROJECT_NAME"
+echo "  Avvia server dev: cd $PROJECT_NAME && npm run dev"
 echo ""
-echo "📋 What's been set up:"
-echo "   ✅ Vite + React + TypeScript"
-echo "   ✅ React Router with basic routing"
-echo "   ✅ Folder structure for exam"
-echo "   ✅ Basic CSS utilities"
-echo "   ✅ MainLayout with Header"
-echo "   ✅ Home and 404 pages"
-echo "   ✅ Build tested successfully"
+echo "  Cosa è stato configurato:"
+echo "    Vite + React + TypeScript"
+echo "    React Router con routing base"
+echo "    Struttura cartelle per il progetto"
+echo "    CSS utilities base"
+echo "    Componente Header"
+echo "    MainLayout con Header importato"
+echo "    Pagine Home e 404"
+echo "    Build testata con successo"
 echo ""
-echo "🚀 Ready for your exam! Good luck!" 

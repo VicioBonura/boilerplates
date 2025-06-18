@@ -7,15 +7,15 @@ HOOK_NAME="$1"
 HOOK_FILE="src/hooks/$HOOK_NAME.ts"
 
 if [ -z "$1" ]; then
-  echo "Usage: ./gh.sh hookName"
-  echo "Example: ./gh.sh useCounter"
+  echo "  -> Uso: ./gh.sh nomeHook"
+  echo "  -> Esempio: ./gh.sh useCounter"
   exit 1
 fi
 
 # Verifica che il nome inizi con "use"
 if [[ ! "$HOOK_NAME" =~ ^use ]]; then
-  echo "❌ Error: Hook name must start with 'use'"
-  echo "Example: useCounter, useApi, useForm"
+  echo "  -> Errore: Il nome dell'hook deve iniziare con 'use'"
+  echo "     Esempio: useCounter, useApi, useForm"
   exit 1
 fi
 
@@ -25,15 +25,15 @@ mkdir -p "src/hooks"
 cat > "$HOOK_FILE" << EOF
 import { useState } from 'react';
 
-// TODO: Define interface for hook return type
+// TODO: Interfaccia
 interface ${HOOK_NAME^}Return {
-  // Add your return types here
+  // Aggiungere return types
 }
 
 const $HOOK_NAME = () => {
   const [state, setState] = useState();
 
-  // TODO: Implement your hook logic here
+  // TODO: Logica
 
   return {
     state,
@@ -43,3 +43,5 @@ const $HOOK_NAME = () => {
 
 export default $HOOK_NAME;
 EOF
+
+echo "  Hook $HOOK_NAME creato con successo!"
