@@ -1,8 +1,0 @@
-header {
-  height: var(--header-h);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-negative);
-  background: var(--bg-primary);
-}
