@@ -1,7 +1,20 @@
 #!/bin/bash
-# --------------------------
-#  React Quick Setup 
-# --------------------------
+# ---------------------------------
+#  React-Project Setup 
+# ---------------------------------
+# Descrizione       : Script per la creazione di un nuovo progetto React
+# Autore            : Vincenzo Bonura
+# Data              : 2025-06-18
+# Aggiornato        : 2025-06-19
+# Versione          : 0.1.1
+# ---------------------------------
+# Utilizzo          :
+#   rsetup name     : Crea un nuovo progetto React con nome prj-name
+#   ./setup.sh name : Crea progetto senza shell.sh attiva
+# ---------------------------------
+# Dependencies      :
+#                   : shell.sh
+# ---------------------------------
 
 PROJECT_NAME="$1"
 
@@ -188,7 +201,7 @@ import './Header.css';
 const Header = () => {
   return (
     <header>
-      <h1>La Mia App</h1>
+      <h1>Boilerplate React</h1>
     </header>
   );
 };
@@ -245,16 +258,16 @@ EOF
 # 11. Crea Home page
 echo "  Creazione pagina Home..."
 mkdir -p "src/pages/Home"
-cat > "src/pages/Home/Home.tsx" << 'EOF'
+cat > "src/pages/Home/Home.tsx" << EOF
 import './Home.css';
 
 const Home = () => {
   return (
     <div className="home-page">
-      <h1>Benvenuto nella tua App</h1>
-      <p>Pronto per iniziare a codificare!</p>
+      <h1>$PROJECT_NAME App</h1>
+      <p>Il boilerplate è pronto e funzionante</p>
       <div className="quick-actions">
-        <button className="btn btn-primary">Inizia</button>
+        <button className="btn btn-primary">Start</button>
       </div>
     </div>
   );
@@ -289,9 +302,9 @@ import './NotFound.css';
 const NotFound = () => {
   return (
     <div className="not-found">
-      <h1>404 - Pagina Non Trovata</h1>
-      <p>La pagina che stai cercando non esiste.</p>
-      <Link to="/" className="btn btn-primary">Torna alla Home</Link>
+      <h1>404 - Page Not Found</h1>
+      <p>The page you are looking for does not exist.</p>
+      <Link to="/" className="btn btn-primary">Go to Home</Link>
     </div>
   );
 };
@@ -323,9 +336,8 @@ npm run build
 echo ""
 echo "  Configurazione progetto completata!"
 echo "  Progetto: $PROJECT_NAME"
-echo "  Avvia server dev: cd $PROJECT_NAME && npm run dev"
 echo ""
-echo "  Cosa è stato configurato:"
+echo "  Sono stati configurati:"
 echo "    Vite + React + TypeScript"
 echo "    React Router con routing base"
 echo "    Struttura cartelle per il progetto"
@@ -335,3 +347,6 @@ echo "    MainLayout con Header importato"
 echo "    Pagine Home e 404"
 echo "    Build testata con successo"
 echo ""
+echo "  Avvio server dev..."
+
+npm run dev

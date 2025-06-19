@@ -2,32 +2,37 @@
 # ---------------------------------
 #  Setup React-Project Shell
 # ---------------------------------
-# Descrizione         : Script per l'avvio dell'ambiente di sviluppo React
+# Descrizione         : Estende la shell con alias per React e GIT
+#                     : e include funzioni per React da ./scripts/
 # Autore              : Vincenzo Bonura
 # Data                : 2025-06-18
 # Aggiornato          : 2025-06-19
-# Versione            : 0.1.1
+# Versione            : 0.1.3
 # ---------------------------------
 # Utilizzo            :
 #   source ./shell.sh : Attiva l'ambiente
 #   react-help        : Mostra la guida
 # ---------------------------------
-# Dependencies        :
-#                     : bash / zsh
+# Dependencies          :
+#                       : ./scripts/*
 # ---------------------------------
 
 # Percorso assoluto
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPTS_DIR="$PROJECT_ROOT/scripts"
 
-echo "  Attivazione ambiente progetto React..."
-echo "  Percorso progetto: $PROJECT_ROOT"
-
 # Verifica esistenza scripts
 if [[ ! -d "$SCRIPTS_DIR" ]]; then
     echo "  -> Errore: Directory scripts non trovata in $SCRIPTS_DIR"
     return 1
 fi
+
+# Colori
+source $SCRIPTS_DIR/modules/colors.sh
+
+print_info "  Attivazione ambiente progetto React..."
+print_color -n "$CYAN" "  Percorso root:"
+echo " $PROJECT_ROOT"
 
 # Determina shell  
 if command -v zsh &> /dev/null && [[ "$SHELL" == *"zsh"* ]]; then
@@ -36,7 +41,8 @@ else
     SHELL_CMD="bash"
 fi
 
-echo "  Shell: $SHELL_CMD"
+print_color -n "$CYAN" "  Shell:"
+echo " $SHELL_CMD"
 
 # Variabili ambiente
 export REACT_PROJECT_ROOT="$PROJECT_ROOT"
@@ -57,9 +63,10 @@ alias rlint='npm run lint'
 
 # Git shortcuts
 alias gs='git status'
-alias ga='git add .'
+alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push'
+alias gl='git log --oneline --graph --all'
 
 # Navigation helpers
 alias prj='cd "$REACT_PROJECT_ROOT"'
@@ -71,23 +78,34 @@ alias hooks='cd src/hooks'
 # Project info function
 react-help() {
     echo ""
-    echo "  React Development Environment"
-    echo "  Progetto: $(basename "$REACT_PROJECT_ROOT")"
-    echo "  PWD: $(pwd)"
+    print_success "  React Development Environment"
+    print_color -n "$CYAN" "    Root ambiente:"
+    echo " $(basename "$REACT_PROJECT_ROOT")"
+    print_color -n "$CYAN" "    PWD:"
+    echo " $(pwd)"
     echo ""
-    echo "  Script disponibili:"
+    print_color "$DARKGRAY" "  Script disponibili:"
     echo "    rgc <name>     - Genera componente"
     echo "    rgp <name>     - Genera pagina"
     echo "    rgh <name>     - Genera hook"
     echo "    rgctx <name>   - Genera context"
     echo "    rsetup <name>  - Setup nuovo progetto"
     echo ""
-    echo "  Comandi npm:"
+    print_color "$DARKGRAY" "  Comandi npm:"
     echo "    rdev           - npm run dev"
     echo "    rbuild         - npm run build"
+    echo "    rpreview       - npm run preview"
+    echo "    rlint          - npm run lint"
     echo ""
-    echo "  Navigazione:"
-    echo "    prj           - Vai alla root del progetto"
+    print_color "$DARKGRAY" "  Comandi Git:"
+    echo "    gs             - git status"
+    echo "    ga             - git add"
+    echo "    gc             - git commit -m"
+    echo "    gp             - git push"
+    echo "    gl             - git log --oneline --graph --all"
+    echo ""
+    print_color "$DARKGRAY" "  Navigazione:"
+    echo "    prj            - Vai alla root del progetto"
     echo "    src            - Vai a src/"
     echo "    comp           - Vai a src/components/"
     echo "    pages          - Vai a src/pages/"
@@ -96,9 +114,7 @@ react-help() {
 }
 
 echo ""
-echo "✓ Ambiente React attivato!"
-echo "  Gli alias e le funzioni sono ora disponibili."
+print_success "✔ Ambiente React attivato!"
+print_debug "  Gli alias e le funzioni sono ora disponibili."
+print_debug "  Per maggiori informazioni, esegui: react-help"
 echo ""
-
-# Mostra i comandi disponibili
-react-help 
