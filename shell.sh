@@ -1,21 +1,35 @@
 #!/bin/bash
-# Script di attivazione ambiente progetto
-# Usage: source ./activate.sh
+# ---------------------------------
+#  Setup React-Project Shell
+# ---------------------------------
+# Descrizione         : Script per l'avvio dell'ambiente di sviluppo React
+# Autore              : Vincenzo Bonura
+# Data                : 2025-06-18
+# Aggiornato          : 2025-06-19
+# Versione            : 0.1.1
+# ---------------------------------
+# Utilizzo            :
+#   source ./shell.sh : Attiva l'ambiente
+#   react-help        : Mostra la guida
+# ---------------------------------
+# Dependencies        :
+#                     : bash / zsh
+# ---------------------------------
 
-# Ottieni percorso assoluto del progetto
+# Percorso assoluto
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPTS_DIR="$PROJECT_ROOT/scripts"
 
 echo "  Attivazione ambiente progetto React..."
 echo "  Percorso progetto: $PROJECT_ROOT"
 
-# Verifica che gli script esistano
+# Verifica esistenza scripts
 if [[ ! -d "$SCRIPTS_DIR" ]]; then
     echo "  -> Errore: Directory scripts non trovata in $SCRIPTS_DIR"
     return 1
 fi
 
-# Determina shell da usare  
+# Determina shell  
 if command -v zsh &> /dev/null && [[ "$SHELL" == *"zsh"* ]]; then
     SHELL_CMD="zsh"
 else
@@ -24,7 +38,7 @@ fi
 
 echo "  Shell: $SHELL_CMD"
 
-# Variabili di ambiente
+# Variabili ambiente
 export REACT_PROJECT_ROOT="$PROJECT_ROOT"
 export REACT_SCRIPTS_DIR="$SCRIPTS_DIR"
 
@@ -35,7 +49,7 @@ alias rgh='"$REACT_SCRIPTS_DIR/gh.sh"'
 alias rgctx='"$REACT_SCRIPTS_DIR/gctx.sh"'
 alias rsetup='"$REACT_SCRIPTS_DIR/setup.sh"'
 
-# Comandi npm (funzionano da qualsiasi directory con package.json)
+# Comandi npm
 alias rdev='npm run dev'
 alias rbuild='npm run build'
 alias rpreview='npm run preview'
@@ -48,7 +62,7 @@ alias gc='git commit -m'
 alias gp='git push'
 
 # Navigation helpers
-alias proj='cd "$REACT_PROJECT_ROOT"'
+alias prj='cd "$REACT_PROJECT_ROOT"'
 alias src='cd src'
 alias comp='cd src/components'
 alias pages='cd src/pages'
@@ -73,9 +87,11 @@ react-help() {
     echo "    rbuild         - npm run build"
     echo ""
     echo "  Navigazione:"
-    echo "    proj           - Vai alla root del progetto"
+    echo "    prj           - Vai alla root del progetto"
     echo "    src            - Vai a src/"
     echo "    comp           - Vai a src/components/"
+    echo "    pages          - Vai a src/pages/"
+    echo "    hooks          - Vai a src/hooks/"
     echo ""
 }
 
