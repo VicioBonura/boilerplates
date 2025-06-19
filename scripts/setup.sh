@@ -6,7 +6,7 @@
 # Autore            : Vincenzo Bonura
 # Data              : 2025-06-18
 # Aggiornato        : 2025-06-19
-# Versione          : 0.1.1
+# Versione          : 0.2.0
 # ---------------------------------
 # Utilizzo          :
 #   rsetup name     : Crea un nuovo progetto React con nome prj-name
@@ -14,6 +14,7 @@
 # ---------------------------------
 # Dependencies      :
 #                   : shell.sh
+#                   : ./modules/colors.sh
 # ---------------------------------
 
 PROJECT_NAME="$1"
@@ -24,31 +25,44 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-echo "  Configurazione progetto React: $PROJECT_NAME"
+# Determina il percorso base dello script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Carica modulo colori
+if [[ -f "$SCRIPT_DIR/modules/colors.sh" ]]; then
+    source "$SCRIPT_DIR/modules/colors.sh"
+else
+    echo "  -> Errore: Modulo colors.sh non trovato in $SCRIPT_DIR/modules/"
+    exit 1
+fi
+
+print_color -n "$CYAN" "  Configurazione progetto React:" 
+echo " $PROJECT_NAME"
 
 # 1. Crea progetto Vite
-echo "  Creazione progetto Vite..."
+print_info "  Creazione progetto Vite..."
 npm create vite@latest "$PROJECT_NAME" -- --template react-ts
 
 cd "$PROJECT_NAME"
 
 # 2. Installa dipendenze
-echo "  Installazione dipendenze..."
+print_info "  Installazione dipendenze..."
 npm install
 npm install react-router react-icons
-echo "  Installazione dipendenze opzionali..."
+print_info "  Installazione dipendenze opzionali..."
 npm install jwt-decode
 
 # 3. Pulizia boilerplate
-echo "  Pulizia boilerplate..."
+print_info "  Pulizia boilerplate..."
 rm -f src/assets/react.svg public/vite.svg
 
 # 4. Crea struttura cartelle
-echo "  Creazione struttura cartelle..."
+print_info "  Creazione struttura cartelle..."
 mkdir -p src/{components,pages,hooks,services,contexts,types,routes,layouts}
 
 # 5. Crea file CSS base
-echo "  Configurazione CSS base..."
+print_info "  Configurazione CSS base..."
 cat > "src/index.css" << 'EOF'
 /* Global */
 
@@ -148,7 +162,7 @@ img {
 EOF
 
 # 6. Crea App.tsx base
-echo "  Configurazione App.tsx..."
+print_info "  Configurazione App.tsx..."
 cat > "src/App.tsx" << 'EOF'
 import { RouterProvider } from "react-router";
 import router from "./routes/routes";
@@ -162,10 +176,11 @@ export default App;
 EOF
 
 # 7. Pulisci App.css
+print_info "  Pulizia App.css..."
 echo "" > "src/App.css"
 
 # 8. Crea routes base
-echo "  Configurazione routing base..."
+print_info "  Configurazione routing base..."
 cat > "src/routes/routes.tsx" << 'EOF'
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout/MainLayout";
@@ -193,7 +208,7 @@ export default router;
 EOF
 
 # 9. Crea componente Header
-echo "  Creazione componente Header..."
+print_info "  Creazione componente Header..."
 mkdir -p "src/components/Header"
 cat > "src/components/Header/Header.tsx" << 'EOF'
 import './Header.css';
@@ -221,7 +236,7 @@ header {
 EOF
 
 # 10. Crea MainLayout
-echo "  Creazione MainLayout..."
+print_info "  Creazione MainLayout..."
 mkdir -p "src/layouts/MainLayout"
 cat > "src/layouts/MainLayout/MainLayout.tsx" << 'EOF'
 import { Outlet } from 'react-router';
@@ -256,7 +271,7 @@ main {
 EOF
 
 # 11. Crea Home page
-echo "  Creazione pagina Home..."
+print_info "  Creazione pagina Home..."
 mkdir -p "src/pages/Home"
 cat > "src/pages/Home/Home.tsx" << EOF
 import './Home.css';
@@ -293,7 +308,7 @@ cat > "src/pages/Home/Home.css" << 'EOF'
 EOF
 
 # 12. Crea 404 page
-echo "  Creazione pagina 404..."
+print_info "  Creazione pagina 404..."
 mkdir -p "src/pages/NotFound"
 cat > "src/pages/NotFound/NotFound.tsx" << 'EOF'
 import { Link } from 'react-router';
@@ -330,14 +345,15 @@ cat > "src/pages/NotFound/NotFound.css" << 'EOF'
 EOF
 
 # 13. Test build
-echo "  Test della build..."
+print_warning "  Test della build..."
 npm run build
 
 echo ""
-echo "  Configurazione progetto completata!"
-echo "  Progetto: $PROJECT_NAME"
+print_success "  Configurazione progetto completata!"
+print_color -n "$CYAN" "  Progetto: "
+echo " $PROJECT_NAME"
 echo ""
-echo "  Sono stati configurati:"
+print_info "  Sono stati configurati:"
 echo "    Vite + React + TypeScript"
 echo "    React Router con routing base"
 echo "    Struttura cartelle per il progetto"
@@ -347,6 +363,6 @@ echo "    MainLayout con Header importato"
 echo "    Pagine Home e 404"
 echo "    Build testata con successo"
 echo ""
-echo "  Avvio server dev..."
+print_info "  Avvio server dev..."
 
 npm run dev
