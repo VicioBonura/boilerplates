@@ -1,0 +1,105 @@
+.login-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-form__header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.login-form__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.form-group label {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.75rem;
+  background-color: #fff;
+  padding: 0 0.25rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.form-group--buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.form-group--buttons button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="reset"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+button[type="reset"]:hover {
+  background-color: #5a6268;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+button[type="submit"]:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .form-group--buttons {
+    flex-direction: column;
+  }
+}
