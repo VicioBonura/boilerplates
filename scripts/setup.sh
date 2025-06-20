@@ -73,6 +73,7 @@ echo " $PROJECT_NAME"
 # 28. Crea pagina Settings
 # 29. Crea pagina 404
 # 30. Test build
+# ---------------------------------
 
 # 1. Crea progetto Vite
 print_info "  Creazione progetto Vite..."
