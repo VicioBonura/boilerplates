@@ -1,54 +1,137 @@
-# React + TypeScript + Vite
+# React Boilerplate (r-bp)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Boilerplate per applicazioni React. Setup minimale ma completo per iniziare rapidamente lo sviluppo.
 
-Currently, two official plugins are available:
+## Struttura Progetto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+src/
+├── components/          # Componenti riutilizzabili
+│   ├── Header/         # Header responsive
+│   ├── Navbar/         # Navbar mobile
+│   ├── DesktopSidebar/ # Sidebar desktop
+│   ├── OffCanvasMenu/  # Menu hamburger
+│   ├── Hamburger/      # Pulsante hamburger
+│   ├── BrandLogo/      # Logo con sizing (sm, md, lg)
+│   └── LoadingSpinner/ # Spinner loading
+├── contexts/           # Context API setup
+├── hooks/              # Custom hooks (useApi, useLocalStorage)
+├── layouts/            # Layout principali
+├── pages/              # Pagine dell'app
+├── routes/             # Configurazione routing
+├── services/           # API utilities
+└── types/              # TypeScript definitions
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Funzionalità Incluse
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- ✅ **React Router** - Routing configurato
+- ✅ **TypeScript** - Tipizzazione completa
+- ✅ **React Icons** - FontAwesome icons
+- ✅ **CSS Custom Properties** - Sistema colori/spacing
+- ✅ **Utility Classes** - Classes CSS pronte all'uso
+- ✅ **API Service** - Utility per chiamate HTTP
+- ✅ **Custom Hooks** - Hook per API e localStorage
+- ✅ **Responsive Design** - Layout mobile + desktop
+- ✅ **Desktop Sidebar** - Navigazione sidebar su schermi grandi
+- ✅ **Context Setup** - Pronto per state management
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## Quick Start
+
+```bash
+npm install
+npm run dev
 ```
+
+## Pattern Pronti all'Uso
+
+### 1. Chiamate API
+
+```tsx
+import { useApi } from "./hooks/useApi";
+import { api } from "./services/api";
+
+const { data, loading, error } = useApi(() => api.get("/users"));
+```
+
+### 2. LocalStorage
+
+```tsx
+import { useLocalStorage } from "./hooks/useLocalStorage";
+
+const [token, setToken] = useLocalStorage("auth_token", "");
+```
+
+### 3. Loading States
+
+```tsx
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+
+{
+  loading && <LoadingSpinner />;
+}
+```
+
+### 4. BrandLogo con Sizing
+
+```tsx
+import BrandLogo from './components/BrandLogo/BrandLogo';
+
+<BrandLogo size="lg" />  // Header
+<BrandLogo size="md" />  // OffCanvas
+<BrandLogo size="sm" />  // Footer
+```
+
+### 5. Sidebar Personalizzabile
+
+```tsx
+import DesktopSidebar from "./components/DesktopSidebar/DesktopSidebar";
+
+<DesktopSidebar title="Filtri">
+  <div>Contenuti sidebar...</div>
+</DesktopSidebar>;
+```
+
+### 6. Utility Classes
+
+```tsx
+<div className="flex flex-center p-2 mt-2">
+  <button className="btn btn-primary w-full">Azione</button>
+</div>
+```
+
+## Variabili CSS Disponibili
+
+```css
+/* Colori */
+--primary: #3e8ee9
+--accent: #d79430
+--text-primary: #232323
+--bg-light: #f0f4f9
+
+/* Sizing */
+--header-h: 6rem
+--navbar-h: 4rem
+--touch-h: 3rem
+```
+
+## Layout Responsivo
+
+- **Mobile (≤768px)**: Header + Main + Navbar bottom + Menu hamburger
+- **Desktop (>768px)**: Header con navigazione + Main + Sidebar opzionale
+- **Auto-switch**: Layout cambia automaticamente
+
+### Layout Desktop
+
+- **Header**: Brand (sinistra) + Titolo + Navigazione (destra)
+- **Sidebar**: Contenuti secondari (filtri, menu aggiuntivi)
+- **Main**: Contenuto principale con spazio ottimizzato
+
+## Durante l'Esame
+
+1. **Parti da qui** - Il boilerplate è già configurato
+2. **Aggiungi pagine** - Crea in `/pages` e aggiungi alle routes
+3. **Usa utility classes** - Per styling rapido
+4. **Pattern pronti** - Early return, loading states, etc.
+5. **Layout flessibile** - Funziona su mobile e desktop
+6. **Estendi context** - Uncomment AuthProvider quando serve

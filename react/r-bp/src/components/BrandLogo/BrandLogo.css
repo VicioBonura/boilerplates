@@ -1,0 +1,17 @@
+.brand-logo {
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-logo--sm {
+  font-size: 1rem;
+}
+
+.brand-logo--md {
+  font-size: 1.25rem;
+}
+
+.brand-logo--lg {
+  font-size: 1.5rem;
+}

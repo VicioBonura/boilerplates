@@ -1,10 +1,22 @@
 #app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  padding-bottom: var(--navbar-h);
 }
 
 main {
   flex: 1;
   padding: 1rem;
+}
+
+/* Layout Desktop */
+@media (min-width: 769px) {
+  #app-container {
+    padding-bottom: 0;
+  }
+  #navbar-container {
+    display: none;
+  }
 }

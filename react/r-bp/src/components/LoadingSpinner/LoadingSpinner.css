@@ -1,0 +1,37 @@
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.spinner {
+  border: 2px solid var(--bg-light);
+  border-top: 2px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner--sm .spinner {
+  width: 20px;
+  height: 20px;
+}
+
+.loading-spinner--md .spinner {
+  width: 32px;
+  height: 32px;
+}
+
+.loading-spinner--lg .spinner {
+  width: 48px;
+  height: 48px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

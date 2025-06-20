@@ -6,24 +6,32 @@
   /* Colors */
   --primary: #3e8ee9;
   --accent: #d79430;
-  --text-primary: #232323;
-  --text-negative: #f0f4f9;
-  --primary-hover: hsl(from var(--primary) h s calc(l + 20));
+  --primary-hover: hsl(from var(--bg-primary) h s calc(l - 10));
+  --primary-active: hsl(from var(--bg-primary) h s calc(l - 15));
+
+  --white: #f0f4f9;
+  --black: #232323;
+  --light-gray: color-mix(in hsl, var(--black) 10%, var(--white));
+  --mid-gray: color-mix(in hsl, var(--black), var(--white));
+  --dark-gray: color-mix(in hsl, var(--black) 70%, var(--white));
+
+  --border-primary: var(--light-gray);
 
   /* Backgrounds */
   --bg-light: #f0f4f9;
   --bg-primary: var(--primary);
-  --bg-primary-light: hsl(from var(--bg-primary) h s calc(l + 20));
-  --bg-primary-dark: hsl(from var(--bg-primary) h s calc(l - 20));
-  --bg-dark: #404040;
+  --bg-primary-light: hsl(from var(--bg-primary) h s calc(l + 10));
+  --bg-primary-dark: hsl(from var(--bg-primary) h s calc(l - 10));
 
   /* Sizes */
   --header-h: 6rem;
   --navbar-h: 4rem;
   --touch-h: 3rem;
-  --footer-h: 3rem;
+  --footer-h: 2rem;
 
   /* Typography */
+  --text-primary: var(--black);
+  --text-negative: var(--white);
   --f-family: Montserrat, sans-serif;
   --icon-touch-size: calc(var(--touch-h) - 1rem);
 }
@@ -60,11 +68,22 @@ img {
 }
 
 /* Utility Classes */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.flex-center { align-items: center; justify-content: center; }
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
 
 .btn {
   padding: 0.5rem 1rem;
@@ -73,13 +92,13 @@ img {
   cursor: pointer;
 }
 
-.btn-primary { 
-  background: var(--bg-primary); 
-  color: var(--text-negative); 
+.btn-primary {
+  background: var(--bg-primary);
+  color: var(--text-negative);
 }
 
-.btn-primary:hover { 
-  background: var(--bg-primary-light); 
+.btn-primary:hover {
+  background: var(--bg-primary-light);
 }
 
 .container {
@@ -89,7 +108,7 @@ img {
 }
 
 @media (max-width: 768px) {
-  .container { 
-    padding: 0 0.5rem; 
+  .container {
+    padding: 0 0.5rem;
   }
 }

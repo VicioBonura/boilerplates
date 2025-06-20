@@ -1,6 +1,8 @@
-import { Outlet } from 'react-router';
-import Header from '../../components/Header/Header';
-import './MainLayout.css';
+import { Outlet } from "react-router";
+import Header from "../../components/Header/Header";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+import "./MainLayout.css";
 
 const MainLayout = () => {
   return (
@@ -9,6 +11,8 @@ const MainLayout = () => {
       <main>
         <Outlet />
       </main>
+      <Footer />
+      <Navbar />
     </div>
   );
 };

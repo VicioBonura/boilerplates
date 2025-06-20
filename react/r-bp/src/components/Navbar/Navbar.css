@@ -1,0 +1,46 @@
+/* Navbar */
+#navbar-container {
+  z-index: 999;
+  height: var(--navbar-h);
+  background: var(--bg-primary-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  nav {
+    width: 100%;
+
+    ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      li a {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--touch-h);
+        font-size: var(--icon-touch-size);
+        aspect-ratio: 1;
+        color: var(--text-negative);
+        border-radius: 50%;
+        transition: all 0.3s ease-in-out;
+
+        span {
+          display: none;
+        }
+
+        &.active {
+          background: var(--text-negative);
+          color: var(--bg-primary-light);
+        }
+      }
+    }
+  }
+}
