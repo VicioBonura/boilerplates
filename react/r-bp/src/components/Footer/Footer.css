@@ -1,10 +1,17 @@
-/* Footer */
 footer {
-  border-top: 1px solid var(--mid-gray);
-  background: var(--light-gray);
-  color: var(--mid-gray);
-  text-align: right;
-  font-size: 0.8rem;
-  padding: 0.25rem 1rem;
   height: var(--footer-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-gray);
+  color: var(--text-negative);
+  font-size: 0.8rem;
+  margin-top: auto;
+}
+
+/* Layout Desktop */
+@media (min-width: 769px) {
+  footer {
+    display: flex;
+  }
 }

@@ -5,10 +5,7 @@ interface LoadingSpinnerProps {
   className?: string;
 }
 
-const LoadingSpinner = ({
-  size = "md",
-  className = "",
-}: LoadingSpinnerProps) => {
+const LoadingSpinner = ({ size = "md", className = "" }: LoadingSpinnerProps) => {
   return (
     <div className={`loading-spinner loading-spinner--${size} ${className}`}>
       <div className="spinner"></div>

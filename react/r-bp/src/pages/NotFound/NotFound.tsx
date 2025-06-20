@@ -1,5 +1,5 @@
-import { Link } from 'react-router';
-import './NotFound.css';
+import { Link } from "react-router";
+import "./NotFound.css";
 
 const NotFound = () => {
   return (

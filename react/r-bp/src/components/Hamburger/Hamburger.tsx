@@ -1,19 +1,21 @@
 import "./Hamburger.css";
 
-type HamburgerProps = {
-  onClick: () => void;
+interface HamburgerProps {
   isOpen: boolean;
-};
+  onClick: () => void;
+}
 
-const Hamburger = ({ onClick, isOpen }: HamburgerProps) => {
+const Hamburger = ({ isOpen, onClick }: HamburgerProps) => {
   return (
-    <div
-      role="button"
-      id="hamburger"
-      aria-label="menu-toggle"
+    <button
+      className={`hamburger ${isOpen ? "hamburger--active" : ""}`}
       onClick={onClick}
-      data-toggle={isOpen}
-    />
+      aria-label="Toggle menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   );
 };
 

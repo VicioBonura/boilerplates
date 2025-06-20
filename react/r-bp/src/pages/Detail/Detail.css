@@ -1,1 +1,18 @@
-/* Detail */
+.detail-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.detail-page h1 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.detail-content {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

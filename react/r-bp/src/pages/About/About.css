@@ -1,0 +1,35 @@
+.about-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-page h1 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.about-content {
+  margin-top: 2rem;
+}
+
+.about-content section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.about-content h2 {
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.about-content ul {
+  margin-left: 1.5rem;
+}
+
+.about-content li {
+  margin-bottom: 0.5rem;
+}

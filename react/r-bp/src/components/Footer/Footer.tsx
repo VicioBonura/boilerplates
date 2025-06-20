@@ -1,10 +1,9 @@
-import BrandLogo from "../BrandLogo/BrandLogo";
 import "./Footer.css";
 
 const Footer = () => {
   return (
     <footer>
-      &copy; <BrandLogo size="sm" /> 2025
+      <p>&copy; 2024 React Boilerplate. All rights reserved.</p>
     </footer>
   );
 };

@@ -1,34 +1,35 @@
-/* Hamburger */
-#hamburger {
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: var(--icon-touch-size);
-  height: 4px;
+  height: var(--icon-touch-size);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 2px;
   background: var(--text-negative);
+  border-radius: 10px;
+  transition: all 0.3s linear;
   position: relative;
-  transition: all 0.3s ease-in-out;
+  transform-origin: 1px;
+}
 
-  &::after,
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translateY(calc(var(--icon-touch-size) * -0.3));
-    background: var(--text-negative);
-    transition: all 0.3s ease-in-out;
-  }
+.hamburger--active span:first-child {
+  transform: rotate(45deg);
+}
 
-  &::after {
-    transform: translateY(calc(var(--icon-touch-size) * 0.3));
-  }
+.hamburger--active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
 
-  &[data-toggle="true"] {
-    background: transparent;
-    rotate: -180deg;
-
-    &::after {
-      transform: rotate(45deg);
-    }
-    &::before {
-      transform: rotate(-45deg);
-    }
-  }
+.hamburger--active span:nth-child(3) {
+  transform: rotate(-45deg);
 }

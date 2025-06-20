@@ -1,46 +1,59 @@
-/* Navbar */
 #navbar-container {
-  z-index: 999;
-  height: var(--navbar-h);
-  background: var(--bg-primary-light);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-primary);
+  z-index: 100;
+}
 
-  nav {
-    width: 100%;
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: var(--navbar-h);
+}
 
-    ul {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
+nav li {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
 
-      li a {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: var(--touch-h);
-        font-size: var(--icon-touch-size);
-        aspect-ratio: 1;
-        color: var(--text-negative);
-        border-radius: 50%;
-        transition: all 0.3s ease-in-out;
+nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  color: var(--text-negative);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+  font-size: 0.75rem;
+  min-width: 3rem;
+}
 
-        span {
-          display: none;
-        }
+nav a:hover {
+  background: var(--primary-hover);
+}
 
-        &.active {
-          background: var(--text-negative);
-          color: var(--bg-primary-light);
-        }
-      }
-    }
+nav a.active {
+  background: var(--primary-active);
+  font-weight: 600;
+}
+
+nav a svg {
+  font-size: 1rem;
+}
+
+/* Layout Desktop */
+@media (min-width: 769px) {
+  #navbar-container {
+    display: none;
   }
 }

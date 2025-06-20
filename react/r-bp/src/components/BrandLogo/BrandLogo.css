@@ -1,17 +1,31 @@
 .brand-logo {
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--text-negative);
+  color: var(--bg-primary);
+  border-radius: 0.25rem;
+  font-weight: 700;
   text-decoration: none;
-  color: inherit;
+  aspect-ratio: 1;
+  transition: transform 0.2s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.05);
 }
 
 .brand-logo--sm {
-  font-size: 1rem;
+  width: 2rem;
+  font-size: 0.8rem;
 }
 
 .brand-logo--md {
-  font-size: 1.25rem;
+  width: 3rem;
+  font-size: 1rem;
 }
 
 .brand-logo--lg {
-  font-size: 1.5rem;
+  width: 4rem;
+  font-size: 1.2rem;
 }
