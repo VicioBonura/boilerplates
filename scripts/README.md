@@ -6,12 +6,12 @@ Collezione di script bash per accelerare lo sviluppo React.
 
 ```bash
 # Setup progetto completo
-./setup-exam.sh my-exam-app
+./setup.sh my-app
 
 # Genera componente
 ./gc.sh MyComponent
 
-# Genera pagina  
+# Genera pagina
 ./gp.sh MyPage
 
 # Genera hook
@@ -24,11 +24,11 @@ Collezione di script bash per accelerare lo sviluppo React.
 ## Script Disponibili
 
 | Script     | Descrizione             | Tempo Risparmiato |
-|------------|-------------------------|-------------------|
-| `setup.sh` | Setup progetto completo | ~15 min →  2 min  |
-| `gc.sh`    | Genera componente React |  ~3 min → 10 sec  |
-| `gp.sh`    | Genera pagina React     |  ~3 min → 10 sec  |
-| `gh.sh`    | Genera custom hook      |  ~2 min → 10 sec  |
+| ---------- | ----------------------- | ----------------- |
+| `setup.sh` | Setup progetto completo | ~15 min → 2 min   |
+| `gc.sh`    | Genera componente React | ~3 min → 10 sec   |
+| `gp.sh`    | Genera pagina React     | ~3 min → 10 sec   |
+| `gh.sh`    | Genera custom hook      | ~2 min → 10 sec   |
 | `gctx.sh`  | Genera context completo | ~10 min → 30 sec  |
 
 ## Configurazione
@@ -48,10 +48,11 @@ Per documentazione dettagliata vedi: [docs/react-automation.md](../docs/react-au
 ## Esempi d'Uso
 
 ### Setup Completo Progetto
+
 ```bash
 # 1. Setup base
-./setup-exam.sh equiprent-app
-cd equiprent-app
+./setup.sh my-app
+cd my-app
 
 # 2. Genera componenti necessari
 ./gc.sh EquipmentCard
@@ -66,14 +67,15 @@ npm run dev
 ```
 
 ### Workflow Tipico
+
 ```bash
 # Analizza requisiti progetto (5 min)
 # Poi esegui:
 
-./setup-exam.sh exam-app        # 2 min
-cd exam-app
+./setup.sh my-app        # 2 min
+cd my-app
 ./gp.sh Detail                  # 10 sec
-./gp.sh Login                   # 10 sec  
+./gp.sh Login                   # 10 sec
 ./gc.sh ItemCard                # 10 sec
 ./gh.sh useItemsApi             # 10 sec
 ./gctx.sh Auth                  # 30 sec
@@ -84,11 +86,13 @@ cd exam-app
 ## Troubleshooting
 
 ### Permessi
+
 ```bash
 chmod +x scripts/*.sh
 ```
 
 ### Path
+
 ```bash
 # Da cartella boilerplates
 ./scripts/gc.sh MyComponent
