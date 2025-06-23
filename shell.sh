@@ -54,6 +54,7 @@ alias rgp='"$REACT_SCRIPTS_DIR/gp.sh"'
 alias rgh='"$REACT_SCRIPTS_DIR/gh.sh"'
 alias rgctx='"$REACT_SCRIPTS_DIR/gctx.sh"'
 alias rsetup='"$REACT_SCRIPTS_DIR/setup.sh"'
+alias rsetup-min='"$REACT_SCRIPTS_DIR/setup-min.sh"'
 
 # Comandi npm
 alias rdev='npm run dev'
@@ -90,6 +91,7 @@ react-help() {
     echo "    rgh <name>     - Genera hook"
     echo "    rgctx <name>   - Genera context"
     echo "    rsetup <name>  - Setup nuovo progetto"
+    echo "    rsetup-min <name>  - Setup nuovo progetto minimo"
     echo ""
     print_color "$DARKGRAY" "  Comandi npm:"
     echo "    rdev           - npm run dev"
