@@ -2,15 +2,19 @@
 
 ## ROADMAP GENERALE
 
-### Stato Attuale: GET Operations Complete ✅
+### Stato Attuale: GET Operations Complete + POST Foundation ✅
 
 - ✅ Architettura base API (Service + Hooks + Components)
 - ✅ Lista prodotti con gestione stati
 - ✅ Dettaglio prodotto con routing dinamico
 - ✅ Gestione immagini avanzata
 - ✅ Error handling robusto
+- ✅ **apiPost utility con dual generics** (TRequest, TResponse)
+- ✅ **productService.createProduct** con Omit<Product, "id">
 
-### Prossimo Obiettivo: POST/PUT/DELETE Operations
+### Prossimo Obiettivo: Completare CREATE Operation
+
+**Status Aggiornato**: Service Layer completato, rimangono Hook + Components + UI
 
 **Target**: Completare CRUD operations per apprendimento API REST completo
 
@@ -27,24 +31,27 @@ Apprendere operazioni **mutative** (POST/PUT/DELETE) attraverso sistema CRUD com
 **Rotta**: `/products/new`
 **Obiettivo**: Apprendere form handling e POST operations
 
-**Implementazioni Necessarie**:
+**Implementazioni Completate ✅**:
 
-##### 1.1 Service Layer Extension
+##### 1.1 Service Layer Extension ✅
 
 ```typescript
-// src/services/productService.ts
+// src/services/productService.ts - IMPLEMENTATO
 export const createProduct = (
   productData: Omit<Product, "id">
 ): Promise<Product> => {
-  return apiPost<Product>("/products", productData);
+  return apiPost<Omit<Product, "id">, Product>("/products", productData);
 };
 ```
 
-##### 1.2 API Utility Extension
+##### 1.2 API Utility Extension ✅
 
 ```typescript
-// src/services/api.ts
-export const apiPost = async <T>(endpoint: string, data: any): Promise<T> => {
+// src/services/api.ts - IMPLEMENTATO
+export const apiPost = async <TRequest, TResponse>(
+  endpoint: string,
+  data: TRequest
+): Promise<TResponse> => {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -53,6 +60,8 @@ export const apiPost = async <T>(endpoint: string, data: any): Promise<T> => {
   // Error handling...
 };
 ```
+
+**Implementazioni Rimanenti**:
 
 ##### 1.3 Custom Hook per Creation
 

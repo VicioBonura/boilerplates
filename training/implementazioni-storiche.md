@@ -289,6 +289,88 @@ const ProductDetailContent = ({ product }: Props) => {
 - **Accessibilità**: considerare utenti con sensibilità motion
 - **CSS co-location**: file CSS accanto a componenti
 
+### Fase 7: Foundation per Operazioni POST/CRUD - Giugno 2025
+
+**Obiettivo**: Iniziare implementazione operazioni mutative (POST/PUT/DELETE)
+**Status**: Service Layer completato ✅
+
+#### Step 7.1: Extension API Utility per POST Operations
+
+**Implementazione apiPost con due generics**:
+
+```typescript
+export const apiPost = async <TRequest, TResponse>(
+  endpoint: string,
+  data: TRequest
+): Promise<TResponse> => {
+  const url = `${BASE_URL}${endpoint}`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP Error: ${response.status}`);
+  }
+
+  return await response.json();
+};
+```
+
+**Apprendimenti Critici - TypeScript Generics Avanzati**:
+
+- **Due Generics Pattern**: `<TRequest, TResponse>` per type safety completo
+- **Superiore ad `any`**: Evita perdita di type safety
+- **Input/Output tipizzati**: Controllo compile-time su payload e response
+- **Best Practice**: Preferire sempre type safety robusta anche se più verbose
+
+#### Step 7.2: Extension productService per CREATE Operation
+
+**Implementazione createProduct**:
+
+```typescript
+export const createProduct = (
+  productData: Omit<Product, "id">
+): Promise<Product> => {
+  return apiPost<Omit<Product, "id">, Product>("/products", productData);
+};
+```
+
+**Apprendimenti - Omit Utility Type**:
+
+- **`Omit<Product, "id">`**: Rimuove id dal tipo (generato dal server)
+- **DRY Principle**: Single source of truth per struttura dati
+- **Auto-sync**: Modifiche a Product si riflettono automaticamente
+- **Best Practice**: Preferire Utility Types a interface duplicate
+
+**Apprendimenti - REST Conventions**:
+
+- **POST `/products`**: Standard per creation di nuove risorse
+- **Payload Body**: Dati serializzati come JSON
+- **Content-Type Header**: Necessario per parsing server-side
+- **Response 201**: Server restituisce risorsa creata con ID generato
+
+**Verifica Apprendimento Teorico Superata**:
+
+L'utente ha dimostrato comprensione eccellente di:
+
+- Architettura a 3 layer (Service → Hook → Component)
+- Pattern di gestione stati API (`{loading, error, data}`)
+- Early return pattern per controllo flusso
+- useEffect dependency arrays
+- useRef e DOM manipulation (problema imageLoader risolto)
+- TypeScript type safety e best practices
+
+**Status Prossima Implementazione**:
+
+- **Step 6.3**: Custom Hook `useCreateProduct` per gestione stati form
+- **Step 6.4**: Component `ProductForm` con validazione
+- **Step 6.5**: Page `CreateProduct` con routing
+- **Target**: CRUD completo entro prossime 2-3 sessioni
+
 ## PATTERN E BEST PRACTICES APPRESI
 
 ### 1. Architettura a Livelli

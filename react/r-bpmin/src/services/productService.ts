@@ -1,4 +1,4 @@
-import { apiGet } from "./api";
+import { apiGet, apiPost } from "./api";
 import type { Product } from "../types/Product";
 
 export const getAllProducts = (): Promise<Product[]> => {
@@ -7,4 +7,10 @@ export const getAllProducts = (): Promise<Product[]> => {
 
 export const getProductById = (id: number): Promise<Product> => {
   return apiGet<Product>(`/products/${id}`);
+};
+
+export const createProduct = (
+  productData: Omit<Product, "id">
+): Promise<Product> => {
+  return apiPost<Omit<Product, "id">, Product>("/products", productData);
 };

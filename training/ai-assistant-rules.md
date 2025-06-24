@@ -214,6 +214,26 @@ npm run dev       # Porta 5173
 3. **Autenticazione**: Context API e protected routes
 4. **Caching**: React Query o SWR integration
 
+## NUOVE REGOLE IMPLEMENTAZIONE - Giugno 2025
+
+### Gestione Terminale e Processi
+
+- **NON eseguire comandi da terminale** - L'utente gestisce direttamente l'avvio di server, database e processi in background
+- **Background services**: L'utente preferisce mantenere il controllo di json-server e vite dev server
+- **Port configuration**: L'utente usa porta 8081 per frontend (accessibile da mobile) e 3001 per json-server
+
+### Pattern TypeScript Avanzati Appresi
+
+- **Dual Generics per API**: Preferire `<TRequest, TResponse>` invece di `any` per type safety completa
+- **Omit Utility Type**: Standard per operazioni CREATE (rimuovere id auto-generato)
+- **Best Practice**: Sempre privilegiare type safety robusta anche se più verbose
+
+### Approccio UX/UI per CRUD
+
+- **POST Success Navigation**: Preferenza per redirect al dettaglio prodotto creato
+- **Form Validation**: Approccio misto (onChange + submit) per massimo apprendimento
+- **Error Feedback**: Mantenere pattern loading/error/success consolidato
+
 ## REGOLE DI RISPOSTA
 
 ### Stile Comunicazione
