@@ -1,0 +1,19 @@
+#app-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding-bottom: var(--navbar-h);
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
+/* Layout Desktop */
+@media (min-width: 769px) {
+  #app-container {
+    padding-bottom: 0;
+  }
+}

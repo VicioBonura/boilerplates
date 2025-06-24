@@ -1,0 +1,10 @@
+/* Products */
+
+.products-page {
+  h1 {
+    margin-bottom: 2rem;
+  }
+  ul {
+    list-style: none;
+  }
+}

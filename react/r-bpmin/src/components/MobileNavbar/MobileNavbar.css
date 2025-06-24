@@ -1,0 +1,144 @@
+/* MobileNavbar */
+#mobile-navbar {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-h);
+  background-color: var(--bg-primary);
+
+  nav {
+    display: contents;
+  }
+
+  ul {
+    display: contents;
+  }
+
+  ul li {
+    flex: 1;
+    list-style: none;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-negative);
+      font-size: var(--icon-touch-size);
+
+      &.active {
+        color: var(--bg-primary);
+
+        &::before {
+          content: "";
+          background-color: var(--text-negative);
+          position: absolute;
+          top: 10px;
+          bottom: 10px;
+          border-radius: 50%;
+          aspect-ratio: 1;
+          z-index: -1;
+        }
+      }
+    }
+
+    span {
+      display: none;
+    }
+  }
+}
+
+#hamburger-menu {
+  --hamburger-radius: 2px;
+  flex: 1;
+  color: var(--text-negative);
+  height: var(--icon-touch-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    display: block;
+    text-indent: -9999px;
+    height: 100%;
+    width: var(--icon-touch-size);
+    background: var(--text-negative);
+    height: 4px;
+    border-radius: var(--hamburger-radius);
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      background: var(--text-negative);
+      height: 4px;
+      transform: translateY(-10px);
+      border-radius: var(--hamburger-radius);
+      transition: all 0.3s ease-in-out;
+    }
+
+    &::after {
+      transform: translateY(10px);
+    }
+  }
+
+  &[data-toggle="true"] {
+    span {
+      background: transparent;
+      transform: rotate(-180deg);
+
+      &::after {
+        transform: rotate(45deg) translateY(0);
+      }
+
+      &::before {
+        transform: rotate(-45deg) translateY(0);
+      }
+    }
+  }
+}
+
+#offcanvas-menu {
+  position: fixed;
+  top: 0;
+  bottom: var(--navbar-h);
+  right: -100dvw;
+  width: 100dvw;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.3s ease-in-out;
+
+  &[data-toggle="true"] {
+    right: 0;
+  }
+
+  ul {
+    list-style: none;
+    color: var(--text-negative);
+    font-size: var(--icon-touch-size);
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    li {
+      width: 100%;
+
+      a {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  background: var(--bg-primary);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+  gap: 1rem;
+  transition: all 0.3s ease-in-out;
+
+  .BrandLogo {
+    width: calc(var(--header-h) * 0.6);
+    height: calc(var(--header-h) * 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.scrolled {
+    height: calc(var(--header-h) * 0.75);
+  }
+
+  nav {
+    margin-left: auto;
+    ul {
+      list-style: none;
+      color: var(--text-negative);
+      display: flex;
+      gap: 0.5rem;
+
+      li a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background-color: var(--bg-primary-light);
+        }
+
+        &.active {
+          background-color: var(--bg-primary-dark);
+        }
+      }
+    }
+  }
+}
