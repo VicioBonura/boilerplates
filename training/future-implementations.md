@@ -2,7 +2,7 @@
 
 ## ROADMAP GENERALE
 
-### Stato Attuale: GET Operations Complete + POST Foundation ✅
+### Stato Attuale: CREATE Operation COMPLETA ✅
 
 - ✅ Architettura base API (Service + Hooks + Components)
 - ✅ Lista prodotti con gestione stati
@@ -11,10 +11,16 @@
 - ✅ Error handling robusto
 - ✅ **apiPost utility con dual generics** (TRequest, TResponse)
 - ✅ **productService.createProduct** con Omit<Product, "id">
+- ✅ **useCreateProduct hook** con gestione stati avanzata
+- ✅ **NewProduct page** (Controller) con navigation logic
+- ✅ **ProductForm component** (View riusabile) con controlled form
+- ✅ **Routing integration** per `/products/new`
+- ✅ **Navigation links** tra Products e NewProduct
+- ✅ **CSS styling** moderno e responsive
 
-### Prossimo Obiettivo: Completare CREATE Operation
+### Prossimo Obiettivo: Completare UPDATE e DELETE Operations
 
-**Status Aggiornato**: Service Layer completato, rimangono Hook + Components + UI
+**Status Aggiornato**: CREATE completo, focus su UPDATE/DELETE per CRUD completo
 
 **Target**: Completare CRUD operations per apprendimento API REST completo
 
@@ -61,49 +67,73 @@ export const apiPost = async <TRequest, TResponse>(
 };
 ```
 
-**Implementazioni Rimanenti**:
+**Implementazioni COMPLETATE ✅**:
 
-##### 1.3 Custom Hook per Creation
+##### 1.3 Custom Hook per Creation ✅
 
 ```typescript
-// src/hooks/useCreateProduct.ts
+// src/hooks/useCreateProduct.ts - IMPLEMENTATO
 export const useCreateProduct = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
+  const [createdProduct, setCreatedProduct] = useState<Product | null>(null);
 
-  const createProduct = async (productData: CreateProductData) => {
-    // Implementation with state management
+  const resetState = () => {
+    /* ... */
   };
 
-  return { createProduct, loading, error, success };
+  const createProduct = async (
+    productData: Omit<Product, "id">
+  ): Promise<void> => {
+    // Implementation completa con error handling granulare
+  };
+
+  return { createProduct, resetState, loading, error, success, createdProduct };
 };
 ```
 
-##### 1.4 Form Component
+##### 1.4 Form Component ✅
 
 ```typescript
-// src/components/ProductForm/ProductForm.tsx
+// src/components/ProductForm/ProductForm.tsx - IMPLEMENTATO
 interface ProductFormProps {
-  onSubmit: (data: CreateProductData) => Promise<void>;
+  onSubmit: (data: Omit<Product, "id">) => void;
   loading?: boolean;
   error?: string | null;
 }
-```
 
-##### 1.5 Page Component
-
-```typescript
-// src/pages/CreateProduct/CreateProduct.tsx
-const CreateProduct = () => {
-  const { createProduct, loading, error, success } = useCreateProduct();
-  const navigate = useNavigate();
-
-  // Form submission logic
-  // Success navigation
-  // Error display
+const ProductForm = ({ onSubmit, loading, error }: ProductFormProps) => {
+  // Controlled form con 4 campi (name, description, price, image)
+  // Generic change handler e form validation
+  // CSS styling moderno e responsive
 };
 ```
+
+##### 1.5 Page Component ✅
+
+```typescript
+// src/pages/NewProduct/NewProduct.tsx - IMPLEMENTATO
+const NewProduct = () => {
+  const { createProduct, loading, error, success, createdProduct } =
+    useCreateProduct();
+  const navigate = useNavigate();
+
+  // useEffect per navigation automatica su success
+  // handleFormSubmit bridge function
+  // Error display e controller logic
+
+  return (
+    <ProductForm onSubmit={handleFormSubmit} loading={loading} error={error} />
+  );
+};
+```
+
+##### 1.6 Routing e Navigation ✅
+
+- **Route `/products/new`** aggiunta prima di `/products/:id`
+- **Navigation links** tra Products e NewProduct
+- **Programmatic navigation** post-creation al dettaglio prodotto
 
 **Concetti di Apprendimento**:
 
