@@ -5,7 +5,7 @@ export const getAllProducts = (): Promise<Product[]> => {
   return apiGet<Product[]>("/products");
 };
 
-export const getProductById = (id: number): Promise<Product> => {
+export const getProductById = (id: string): Promise<Product> => {
   return apiGet<Product>(`/products/${id}`);
 };
 

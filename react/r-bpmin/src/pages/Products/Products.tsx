@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useAllProducts } from "../../hooks/useAllProducts";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import "./Products.css";
@@ -10,7 +11,12 @@ const Products = () => {
 
   return (
     <div className="products-page">
-      <h1>Products</h1>
+      <div className="products-header">
+        <h1>Products</h1>
+        <Link to="/products/new" className="btn btn-primary">
+          Nuovo
+        </Link>
+      </div>
       <ul>
         {data.map((product) => (
           <li key={product.id}>

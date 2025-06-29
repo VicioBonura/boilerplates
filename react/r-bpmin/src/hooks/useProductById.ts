@@ -22,16 +22,8 @@ export const useProductById = (id: string | undefined) => {
           return;
         }
 
-        //CONVERSIONE ID
-        const productId = parseInt(id);
-        if (isNaN(productId)) {
-          setError("ID non valido");
-          setLoading(false);
-          return;
-        }
-
         //CHIAMATA API
-        const product = await getProductById(productId);
+        const product = await getProductById(id);
         setData(product);
       } catch (error) {
         setError(error instanceof Error ? error.message : "Errore sconosciuto");

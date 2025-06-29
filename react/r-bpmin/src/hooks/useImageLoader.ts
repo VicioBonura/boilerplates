@@ -30,6 +30,12 @@ export const useImageLoader = (imageUrl: string) => {
       setError("Failed to load image");
     };
 
+    //check immagine in cache -> non serve ascoltare eventi load e error
+    if (imageElement.complete && imageElement.naturalWidth > 0) {
+      handleLoad();
+      return;
+    }
+
     imageElement.addEventListener("load", handleLoad);
     imageElement.addEventListener("error", handleError);
 

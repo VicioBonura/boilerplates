@@ -1,21 +1,21 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Mario Rossi",
       "email": "mario.rossi@example.com",
       "password": "password",
       "role": "admin"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Luigi Bianchi",
       "email": "luigi.bianchi@example.com",
       "password": "password",
       "role": "user"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Giovanni Verdi",
       "email": "giovanni.verdi@example.com",
       "password": "password",
@@ -24,74 +24,95 @@
   ],
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Smartphone Samsung Galaxy S24",
       "description": "Smartphone di ultima generazione con display AMOLED 6.1 pollici, fotocamera da 50MP e batteria da 4000mAh",
       "price": 100,
       "image": "https://picsum.photos/id/1/600/400"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Laptop Dell XPS 13",
       "description": "Ultrabook con processore Intel Core i7, 16GB RAM, SSD 512GB e display InfinityEdge da 13.3 pollici",
       "price": 200,
       "image": "https://picsum.photos/id/2/600/400"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Cuffie Bluetooth Sony WH-1000XM5",
       "description": "Cuffie wireless con cancellazione attiva del rumore, autonomia 30 ore e qualità audio Hi-Res",
       "price": 300,
       "image": "https://picsum.photos/id/3/600/400"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Tablet iPad Air 5ª gen",
       "description": "Tablet con chip M1, display Liquid Retina da 10.9 pollici, compatibile con Apple Pencil e Magic Keyboard",
       "price": 400,
       "image": "https://picsum.photos/id/4/600/400"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Smart TV LG OLED 55\"",
       "description": "TV OLED 4K da 55 pollici con HDR10, Dolby Vision, webOS e supporto Alexa e Google Assistant",
       "price": 500,
       "image": "https://picsum.photos/id/5/600/400"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Console PlayStation 5",
       "description": "Console di ultima generazione con SSD ultra-veloce, ray tracing hardware e controller DualSense",
       "price": 600,
       "image": "https://picsum.photos/id/6/600/400"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Smartwatch Apple Watch Series 9",
       "description": "Smartwatch con chip S9, display Always-On Retina, GPS integrato e monitoraggio salute avanzato",
       "price": 700,
       "image": "https://picsum.photos/id/7/600/400"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Router WiFi 6 TP-Link Archer AX73",
       "description": "Router dual-band con tecnologia WiFi 6, velocità fino a 5400 Mbps e copertura per case fino a 250 mq",
       "price": 800,
       "image": "https://picsum.photos/id/8/600/400"
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Webcam Logitech Brio 4K",
       "description": "Webcam Ultra HD 4K con autofocus, correzione automatica luce e microfono con riduzione rumore",
       "price": 900,
       "image": "https://picsum.photos/id/9/600/400"
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Powerbank Anker 20000mAh",
       "description": "Caricabatterie portatile ad alta capacità con ricarica rapida PowerIQ 3.0 e porte USB-C e USB-A",
       "price": 1000,
       "image": "https://picsum.photos/id/10/600/400"
+    },
+    {
+      "id": "b41f",
+      "name": "Fiume del Nord",
+      "description": "Veduta panoramica di un fiume in una vallata verde",
+      "price": 999,
+      "image": "https://picsum.photos/id/11/600/400"
+    },
+    {
+      "id": "0aa2",
+      "name": "Spiaggia",
+      "description": "visuale di una spiaggia in inverno, con foce di un fiume",
+      "price": 999,
+      "image": "https://picsum.photos/id/12/600/400"
+    },
+    {
+      "id": "6206",
+      "name": "Veduta marina",
+      "description": "Vista di spiaggi e mare",
+      "price": 123,
+      "image": "https://picsum.photos/id/13/600/400"
     }
   ]
 }
